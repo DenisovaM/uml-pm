@@ -5,11 +5,12 @@
 - выбор ЯП задачи;
 - регистрация и вход в аккаунт;
 - отправка писем на почту;
-- профиль пользователя + настройка профиля;
+- профиль пользователя + редактирование профиля;
 - поиск задачи;
 - блог ("ретвиты" решения задачи в свой профиль);
 - редактор кода + отправка решения задачи;
-- рестинг сложности задач и отметка о статусе решения задачи.
+- рейтинг сложности задач;
+- отметка о статусе решения задачи.
   
 ![use](https://www.plantuml.com/plantuml/svg/fLJBJjj05DtdAwxOi28Vq4M5X8fK2OcAaEuj-yOPrRKZZqsx15hKIY0XiUcgfVs3D1351DBymimVSJns73-2DrraF3FtddFFt3cJNHbPOHH_z2YMtEbiMtOKXB9ZFhIbVggfcgcnFiNtJYNwJ9zZdk3tJqtKM2tKGb-g1r9BR3pgAoIRW3u70EijiYJr_P1T8ICEsUbB3Wls7__BV5JbtSOPR4koxEGJrBXD6VMPUiA82gGUWLzWUcaOzfcTzu8_bH0jgh2wmjwrWVQ4w_T79U2Dla3QFQa9eQ01W-P9Vp7f1u7xrcyJjZGRNrM2usKLKc7lmc0WF2xE1kGVf5qWEMqIpWB0b33CG3KjjXuoZTO9xmqjtwtqv3ToxW6VGs2vuuQeAUED8wALZ1Rzy4dAgh-ff51_RCaF9Sml55mQvHCKHZCfxRJ-lZf6ffbzvuXbu9tmuQ16S0kjQAoQDylj2z-fPT_0GNyXxvJqjPfXCLTZaxit30B91-XBRBcy4G7VZOrIDDMO04tAp6ZgvqGzzjYEXE_ss0hjuU4e4e7VPZzO9ADDUpyrtafjak14vLQK3D0Bl3XbnJM6U3WSml72bhHsEmM3vXkhR-pil2wylY6McxbAMdjUrIK1bPkw6IXARS2KNLso5dKh8Nf5_3c25HeKyGWanMs_KC34LfEKUgLepLk9vdJhwEQRVIctvbZgngFkMaYp9e9L3n9oX6zxiSETjblFY9i5Ymgx6F1t_Wm0 "use")
 
