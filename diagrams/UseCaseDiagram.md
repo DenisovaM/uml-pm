@@ -9,7 +9,7 @@
 - поиск задачи;
 - блог ("ретвиты" решения задачи в свой профиль);
 - редактор кода + отправка задачи;
-- рестинг сложности задач и отметки о решенности задачи.
+- рестинг сложности задач и отметка о статусе решения задачи.
   
 ![use](https://www.plantuml.com/plantuml/svg/fLNBQjj05DthAuPil8e_e8iI20qK0YbntBsGhkMXgcGqKjfb71fQI22GJLTjsZzmqne_KjU_CFD7EJEIzOusNNWqC_UUSy_SEOCFH6n7SVBUPuaWo-hPJXn6mZ8VjYU_oRbSo9cwmFUtNAgfkiHyYTy_-I1dSYCtwbgkcDnYur7T8Da4r2K0MEynMx1X4977HKmHkKD1KSx-zN-PJwkyFPp1iGK9AvkWnhrcL5Fv5oCgCFa8_0RJQyDmHEI-vVIXXEXGXTKDzcuDTC2zO3Wf0U-Gj8A-fGaVXzxhe4l8rcnyaaiS9sNKGjv4uOZxb9y5o9z8kqAoRWgq0p1d61QWckTRgrIJVKw7OplmAZtuWPm_WA-rk5A73L5JnYkNnpiP7VhX2ysgFcS7rkhFRF6kXFcEWbkZ_065qJocEwk-x8wHQgR0FIKH-kTqCgeHt4ChRa6kc-MEUE3Mik_Wc5-GTy7KhLnWiPOpatiu3aD1n-XBOdlKYe3FPaOfccek7KrApMVgPqG3yic9UU0Do8wSySaavc7GPJTrbT7gti-DbwRw5d2YSYjA1XY4Vg9PSOqH7Wf5S3Xt12lSpS9HyqtLD_RtN-RURebbvgsIrfvJTSc0oapT3EIbMZ1bLvUinVgL47l1w6CCApGeaWb8yjj-fe29zLgXcRTCnYvL5zzfBYfNebd18jf-zy_brZpD-icaNqWjCdkb9wkvIXrgw4AuwcG67XuuVkAIrUMTj7XJL5xX00F-19u0 "use")
 
