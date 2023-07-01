@@ -1,5 +1,4 @@
 @startuml use
-
 'actors
 actor "Незарегистрированный пользователь" as UnregisteredUser
 actor "Зарегистрированный пользователь" as RegisteredUser
@@ -8,20 +7,24 @@ usecase "Просмотр ленты" as FeedView
 usecase "Зарегистрироваться" as SignUp
 usecase "Вход в систему" as LogIn
 usecase "Просмотр профиля" as ViewProfile
-'usecase "Сохранение изменений" as SaveChanges
 usecase "Редактирование профиля" as EditProfile
 usecase "Просмотр задачи" as ViewTask
-usecase "Отправить решение" as SendResolveOfTask
+usecase "Отправить решение на проверку" as SendResolveOfTask
+usecase "Выложить решение в профиль" as SendResolveOfTaskToProfile
 usecase "Поиск задачи" as FindTask
 usecase "Выбор языка" as ChooseLanguage
 usecase "Выбор параметров поиска" as SelectingSearchOptions
-usecase "Просмотр характеристик решения" as ViewSolutionCharacteristics 
+usecase "Просмотр статуса решения" as ViewSolutionCharacteristics 
+usecase "Посещение чужого профиля" as ViewOtherProfile
+usecase "Просмотр чужого решения" as ViewOtherSolution
+usecase "Прокомментировать чужое решение" as CommentOtherSolution
+usecase "Оценить чужое решение" as EvaluateOtherSolution
 'usecases of UnregisteredUser
 UnregisteredUser-->FeedView
 UnregisteredUser-->SignUp
 
 'usecases of RegisteredUser
-RegisteredUser --> LogIn
+RegisteredUser -up-> LogIn
 RegisteredUser -->FeedView
 RegisteredUser --> ViewProfile
 EditProfile .> ViewProfile : extend
@@ -33,4 +36,9 @@ SelectingSearchOptions .> FindTask : extend
 SendResolveOfTask .up.> ViewTask : extend
 ViewTask.> ChooseLanguage  : include
 ViewSolutionCharacteristics .up.> SendResolveOfTask : extend
+SendResolveOfTaskToProfile ..> SendResolveOfTask : extend
+RegisteredUser --> ViewOtherProfile
+ViewOtherSolution ..> ViewOtherProfile : extend
+CommentOtherSolution ..> ViewOtherProfile : extend
+EvaluateOtherSolution ..> ViewOtherProfile : extend
 @enduml
