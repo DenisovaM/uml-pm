@@ -1,0 +1,36 @@
+@startuml use
+
+'actors
+actor "Незарегистрированный пользователь" as UnregisteredUser
+actor "Зарегистрированный пользователь" as RegisteredUser
+'usecases
+usecase "Просмотр ленты" as FeedView
+usecase "Зарегистрироваться" as SignUp
+usecase "Вход в систему" as LogIn
+usecase "Просмотр профиля" as ViewProfile
+'usecase "Сохранение изменений" as SaveChanges
+usecase "Редактирование профиля" as EditProfile
+usecase "Просмотр задачи" as ViewTask
+usecase "Отправить решение" as SendResolveOfTask
+usecase "Поиск задачи" as FindTask
+usecase "Выбор языка" as ChooseLanguage
+usecase "Выбор параметров поиска" as SelectingSearchOptions
+usecase "Просмотр характеристик решения" as ViewSolutionCharacteristics 
+'usecases of UnregisteredUser
+UnregisteredUser-->FeedView
+UnregisteredUser-->SignUp
+
+'usecases of RegisteredUser
+RegisteredUser --> LogIn
+RegisteredUser -->FeedView
+RegisteredUser --> ViewProfile
+EditProfile .> ViewProfile : extend
+RegisteredUser -up-> FindTask
+RegisteredUser --> ViewTask
+ViewTask .> FeedView : extend
+ViewTask .> FindTask : extend
+SelectingSearchOptions .> FindTask : extend
+SendResolveOfTask .up.> ViewTask : extend
+ViewTask.> ChooseLanguage  : include
+ViewSolutionCharacteristics .up.> SendResolveOfTask : extend
+@enduml
