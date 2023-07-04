@@ -14,8 +14,7 @@
 - отметка о статусе решения задачи;
 - просмотр времени выполнения и объёма решения.
   
-![use](https://www.plantuml.com/plantuml/svg/fPRDJjj04CVlUOeL5qxn0_I0g118bLgb8j2xvKmIgyQE_07j3K9RMe64nAKdQ1yXVAIu-U8LTj-e_rqx_dPow87OtfdvpUn_PqTiUxxk-i6HnGAF6fkwuJkkrr0Fji5l-PW_yv4unVEHX-9C3F4Uuc_17_Y8p_bSNFA_ZBzWOIgkuAmCOeW0V6ymtME7jaizq_F9fSwXHsv2__c_vFqyTnDRC7IFl4RyWXo_956SyHb-aO7nAUBdUBrKX3sYpWUJJZ8HAwh2rnNMhbLes-pPXuDCu8tu2hSdnXyO4gfWO6RYNBc_TNflx5M5lQY5Bpp4zg8Cih3thjCrBSe4_WRq2GfDWC_g5V9n5MItO_fbI2axJbbInGKFazm7klSn4tE7X98_Gi9GIi6aJkAx53JAFkUZk0IuZF6Sn9jlaztP9y-nZgdLBM1lSCvJHFofWJumVgyS7gjH1qx5zk2E0-2JyiRsJBjJKS4zX3Xbufe_usF2Hyftf-yu7htLxLwWzwWo0lqvKfhCKFKmsdhKj2f_36gJHOPlshqswQxHRmryqx5NjQbg7jblvrY4g253SqM9vBcFLLTAdn1xp2gMQPssOmKopqvVTt7boCLTCGsFvNK2Von-97AB2t6Eeu3QV57Naos_J-xwdigXQcfKg6MXHHRaMu0sYsvi_Xgcz76XOwAJSuwEoFRhy7VYMrpAUjJkiMu5ka_rh27Ev5HSnYnPdmfi3KXgxsTyRt5-BwepuasS8Uk2twS7aFJuE_AyGjD9TQF6WAzKOfhUaYTbHB_8XbIGruO1n3uPpZ6vdzFXo9nkUIGN5vhDhMGqLjZYsPU75gPn_fCrEyw9tToAvs2-EAP9enORsIj6dtn8K49aYYgRSkCoC_MObZFLquC18CbusAp9e8pB5ybUbfI2SzQObrghPq6TRs7OCIqOQ6aXvPmmvgSMWuzf6rRGeSQggH21omdhQqa6BzDMHrOANHeafN6Wi4MtAfKJIVBXgMlLD62QQ_RwVcLa4bXvzvbcKNTDuFBkhzb3vg8hpoGiyTZ63_ux-mS0 "use")
-
+![use](https://www.plantuml.com/plantuml/svg/fLRDJjj04BxdALPSECKFq0EYGY1LQfMAGE-MCqci6Zlosj3U-6bBAv2GkFG4xIE4G8gRFrvXzutwxThnJ-maXnw8rvxvlfdvTcR4DWzCFmYF71PogcsQLk3vlAOVR4FSYQ5u5drvYkUZYEIPFCSvmjzC34HVJCLKNec_JBpWmrXUmraRv3a0UDzW9cU7hayTcmVaK-kGav-o__nVvlqYxoPAi4nEl9OS4EENOfHdOe9VH61Y3FmKnolDi4VK-c3JIGwn8YkyNUFRZOOsxOvxsCi1R-LNk3qnCM08gC6WcSWBxVxMwxnnLoI6um1m5NU6ghNrYuXGQnnEPVdUzzgsGpcMtm0yGQuHOkN5YyImYcItPGTbaf96k7B5AYz5bCO-CFd77EOU0HL_7m4ZfGjJeidlIjqu-bJqanJWCiHpb2ZH9BUrJznpZgdHNg2znQMFWVYpX7J0n8DsUAocEl0goeCxRaECoeNjsMwh8eC7284RkH7FU1c9llRTwNeUfxUcsmdD3bKYqAnzhSa4MP_7fSSThECdH4roo0fijzCaqxUwZLvWUovVsHeGMpNV1Jv2r8YXq-90wjw7kaMLJuGQyuhbMgVfEQ6AizCrVSmV-HWSs-Aig1FuX_97AhUyb1UuYjcgdcm4NVBNzrI1QacEccgUQ3hDSpBeDmFT99xVub1czCE5beclpZiw8ZTOodylloN9hEVQFJQTq0oeI5OSZ94ybLS9bqfG0nizKke7ETyxtE2BxesaYZD4dOc7x0hIBdz7d2-qdT8tRWtuAYd6sPmyQICwHhMa9dbjMQ3O9yix9lzpjYkProvlwCKFzVfMkYahRCagB98kBEVYAwktl1EtlfMinM9op5168p6oLum-1P2WH95BgcmgBCpStcD6mRISFUo195qGcqiYQEFyeBZdAMN41Ml2brchjy4otuLrnuomPsI9b6F2MDnR33wsQpbXYsghza9CN0wuF9TqzJ9ZDR9IwD8gAIq4JRleLgLoAaaHdhbMhGDc-7Qd6rGYKs3bx3F3eVOQu7psrzIG6tJjcS9IZstyu9-rVm00 "use")
 
 
 ### ВИ Зарегистрироваться
@@ -109,3 +108,68 @@
 | 1. Выбор задачи (клик по элементу) |   |
 |  | 2. Предоставление пользователю информации по задаче. Информация: <br/>- название;<br/>- описание;<br/>- 3 тест кейса(номер, входные и выходные данные).<br/>Пользователю представлены так же: редактор кода, опция выбора языка, кнопка "Отправить на проверку" |
 | 3. Просмотр предоставленной информации |   |
+
+### ВИ Отправить решение на проверку
+| ВИ | Отправить решение на проверку |
+| ------------- | ------------- |
+| Основные лица | Зарегистрированный пользователь |
+| Цель | Отправить написанное пользователем решение на проверку |
+| Триггер | Пользователь предоставил решение |
+| Предусловие | Задача просматривается пользователем |
+| Результат | Решение отправлено на проверку |
+
+| Действия актора | Отклик системы |
+| ------------- | ------------- |
+| 1. Пользователь отправляет решение, введённое в блок редактирования текста и нажимает кнопку "Отправить на проверку" |   |
+|  | 2. Проверка корректности данных. Если не совпадает название метода, то Исключение 1 |
+|  | 3. Проверка корректности данных. Если не совпадает тип входных данных, то Исключение 2 |
+|  |  |
+
+### ВИ Просмотр своего профиля
+| ВИ | Просмотр своего профиля |
+| ------------- | ------------- |
+| Основные лица | Зарегистрированный пользователь |
+| Цель | Просмотреть данные своего профиля |
+| Триггер | Решение пользователя о просмотре данных своего профиля |
+| Результат | Пользователю предоставлена необходимая информация |
+
+| Действия актора | Отклик системы |
+| ------------- | ------------- |
+| 1. Пользователь переходит во вкладку своего профиля |   |
+|  | 2. Предоставление пользователю информации о его профиле. Информация: <br/>- username;<br/>- фото профиля;<br/>- информация о последней активности (dateOfLastActivity).<br/>Пользователю представлены так же: просмотр своей ленты, кнопка "Редактировать профиль" |
+| 3. Просмотр предоставленной информации |   |
+
+### ВИ Редактирование своего профиля
+| ВИ | Редактирование своего профиля |
+| ------------- | ------------- |
+| Основные лица | Зарегистрированный пользователь |
+| Цель | Возможность отредактировать свой профиль |
+| Триггер | Решение пользователя о потенциальном редактировании профиля |
+| Предусловие | Выбрана кнопка редактирования профиля |
+| Результат | Пользователю предоставлена необходимая информация и функционал для редактирования |
+
+| Действия актора | Отклик системы |
+| ------------- | ------------- |
+| 1. Пользователь нажимает кнопку "Редактировать профиль" |   |
+|  | 2. Предоставление пользователю информации о его профиле. Информация: <br/>- username;<br/>- фото профиля;<br/>- дата рождения;<br/>- мобильный телефон;<br/>- адрес электронной почты.<br/>Пользователю представлены так же: кнопки "Сменить пароль" и "Сохранить изменения" |
+| 3. Просмотр предоставленной информации. Редактирование по желанию пользователя. |   |
+|  | 4. Открытие пользователю функционала кнопки "Сохранить изменения", если изменения были сделаны.  |
+| 5. Нажатие кнопки "Сохранить изменения" |  |
+| 6. Нажатие кнопки "Сменить пароль" |  |
+|  | 7. Запрос у пользователя старого пароля, нового и повторения нового пароля. |
+| 8. Ввод данных |  |
+| | 9. Если старые пароль не подходит, то Исключение 1 |
+| | 10. Если новые пароли не совпадают, то Исключение 2 |
+| | 11. Если всё корректено, то изменение данных в БД и профиле |
+
+Исключение 1
+| Действия актора | Отклик системы |
+| ------------- | ------------- |
+|  | 1. Если старый пароль не совпадает с введённым, то отобразить пользователю сообщение об этом "Старый пароль не совпадаетс введённым!"  |
+| 2. Ввод новых данных |   |
+
+Исключение 2
+| Действия актора | Отклик системы |
+| ------------- | ------------- |
+|  | 1. Если новые пароли не совпадатю, то отобразить пользователю сообщение об этом "Пароли не совпадают!"  |
+| 2. Ввод новых данных |   |
