@@ -1,7 +1,6 @@
 # Диаграмма сущность-связь
 Нотация Мартина </br>
 
-
 ![erd](https://github.com/DenisovaM/uml-pm/blob/pics/erdiagram.png)
 
 # Диаграмма базы данных
