@@ -2,9 +2,9 @@
 Нотация Мартина </br>
 
 
-![erd](https://github.com/DenisovaM/uml-pm/blob/pics/erdiagram.png)
+![erd](https://github.com/DenisovaM/uml-pm/blob/pics/erd.jpg)
 
 # Диаграмма базы данных
 PostgreSQL + MongoDB
 
-![bd](https://github.com/DenisovaM/uml-pm/blob/pics/bddiagram.png)
+![bd](https://github.com/DenisovaM/uml-pm/blob/pics/dbd.jpg)
