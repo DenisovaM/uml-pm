@@ -14,8 +14,7 @@
 - отметка о статусе решения задачи;
 - просмотр времени выполнения и объёма решения.
   
-![use](https://www.plantuml.com/plantuml/svg/fLRDJjj04Bxp52ikESKFq0EYGY1LQfMAGE-MCqci6Zlosj3U-6bBAv2GkFG4xIE4G8gRFrvXzutwxThnJ-maXnw8rvxvlfdvTcR4DWzCFmYF71PosgYPLk3vV4C_sAQu4qFnBFho5Cz74SapUOvpXB-P68Y-c8gfl19_cNZ1Xx6yXhCso7C0yBx9JCuENPywDW_8fzOX9pzb__c_pFj5tXfAi4nEV2Cv8COlnIZFn0I_YC346FWfZbUQOO-ezS6cannYHLPukyQt6mrjsXtti9S3tiglS7jYOi0GK8D1Cv4NslsjrtdZhaWCnm7WAkuCLMlh5n6XrZYSolAzxxLjXt8ilm5uWbmZnCgB5ubX5SbkomxA92MDSEMALLwAA8rzOFAFESmz0Yh-FW96IXUcH9FVbRfnzAde9od0POZdA56YIMvhdxZd75EZlK1xYqiV0_5d2Uc0YGVjy5XDTU1Lb0Ttt8OObGlRizrMHGOF408tSYEUyJ8IVUsxq_KyJczDjnEQ7Qf4e5dxMfC9iZwFIuyxMCTFY9haa1NORgT9fczr6xt0zbo-iZKWjcg-2to4g153fyM1rBqFTOigdmWrvXNBjKxJSq8LPwTh-fW_yZ4ujiLPKIVm3-MFL6vvAIzm5RDLFTa8kkIlxwa2rP8SDTKyqNIQvsJGRmQwIJo_nQ7Cw8SBBHDVdNTqH6wmbFzUVakIMS-rUsmweHbGaQmu62DvAgyIBfMW1ZPwfDGFShvtkC4NtHj95MU8EXCFsHMaNVwEE5zeEwLlt1hmLLACipbvqaPqZ6f9JVBQia2nJvPtJFxdR5SohrtUq8iVwlMjT5DMs99LM2HTMCx5LrPlUITkVIjPYyNacA6CHc9ahnXz2Y11YIANLDbKM9YvlSUCWcavUzW3IReWQaiYQEFyeBZdAMN41Ml2brchjy4otuLrnuomPsI9b6F2MDnR33wsQpbXYpPMxOMOk1nmUIxfwcN6QcIbqALLKbe8cdRHhKhbL98YF7EjLUq3PlXsfnjKGZDavVGpmw7s6kHy-jTKaHjrxPd2Kezj_E3VjNy0 "use")
-
+![use](https://www.plantuml.com/plantuml/svg/fLRDJjj04BxdALPSSeeVe0T4XK2g14f5e7VBsIHMZHrvRMXl1DhI2YGaBZr1-mXE8CND7w-m-qRzTktuFycXXyG_C_FDp3UpNxB3FDtr_5EB-8pMwhhXEIwhgGlPuWzyp5zu82vmVUAX68XBt8VuBFY81tpEv-A6_oNy5I-cuXREoY0k4O3dBQ8pScAxj6ioZxgqVSAecw3__5_aepnk7IqOEgEi5jyWno-9A0PyXcza87oA-3bkRnJ2FgNj3oOzpqIigGfFjtXtfq9RPjS-wMS2xyLNk3qJFY98g881CnDNolt0wRwprnI6sn72PTu5kbRMBpn4hr4wMULxr-cO5isW_4R0C-YQ85UMl92Fgq3ssgPN1YbnX95BL77DmoJtiSu-Pc8UaL3Y1qWOIbw894ryb-n6sUSyY4k0onZNISn4Yzhj8yeSwumsEmNOUmnzYeW_Aq17X0-LmrCrrB5JqHxSCGq-AJUsRzhjYWg6808JkUClU9ZmGFdkzXo7qGFTxlfwbrP6O5a3nSaCLLz6hKSRhFB7G2rgKSCpxMwBwgxHQ_Ozqx7PsjK0sNBvhl0If8O4cnObadCVgnMLFY5wp3AMMPsMO_aopsvFTt7-g8k3OngCv7a2_bZyIEWMr-8AerYisyccrwFkvfrAeE8Z_IfkKF14zb9TiC9TLfqSxIKo8XV0daM7ENz2qrpZmlv4StHEJwdjhSH_5D_YOZPZxPtfbgzxD0-MFoKJSI5xLLYoG1NOx5Cv2Y_Z-u1nlgf5YRiO8Ek23zDv92j_I1ahxA0aEzeJ-4egfkcXULP6h8_SJmNorZ00SKGDvuowdmjwaWfV02em4rduM6dYIxIB2qNtVBab0sKTgR18LWyTbqRYxEevVXbnEkKVXEABHcCx4UOAMwoyUT32Rq7-aJJQphdTs8vLEDy-qQHHYuta3Q6VF91SWiWKLJRbz3aZiqJBcLQZ-ts097fKNv516PSt4djPKWgSiyPugRLQV5Rv5jILQ7vVImifvuGnBvC4FgPjM7wRrjR9K0HSJhYwbaJfYRO-ifBeadAL94V15jsgM4ueoOUdhgNJiEnMhN7gLwzI9gAvPhVdLQP88ojrY6WMxMo8NEhGXcupegCyax34OmTV-1Vv3m00 "use")
 
 
 ### ВИ Зарегистрироваться
@@ -121,6 +120,25 @@
 | 1. Выбор задачи (клик по элементу) |   |
 |  | 2. Предоставление пользователю информации по задаче. Информация: <br/>- название;<br/>- описание;<br/>- 3 тест кейса(номер, входные и выходные данные).<br/>Пользователю представлены так же: редактор кода, опция выбора языка, кнопка "Отправить на проверку" |
 | 3. Просмотр предоставленной информации |   |
+
+
+
+
+### ВИ Выбор языка задачи
+| ВИ | Выбор языка задачи |
+| ------------- | ------------- |
+| Основные лица | Зарегистрированный пользователь |
+| Цель | Выбрать язык задачи |
+| Триггер | Решение пользователя сменить язык задачи |
+| Предусловие | Пользователь просматривает задачу |
+| Результат | Пользователь выбрал нужный язык задачи |
+
+| Действия актора | Отклик системы |
+| ------------- | ------------- |
+| 1. Переход к чек-боксу, отвечающему за список возможных ЯА для решения |   |
+|  | 2. Предоставление пользователю информации о возможных ЯП: открытие чек-бокса, пользователю предоставляется список |
+| 3. Просмотр предоставленной информации. Выбор необходимого ЯП задачи |   |
+|  | 4. Изменения в текстовом редакторе, соответсвующие ЯП ('скелет' решения) |
 
 
 
@@ -280,6 +298,28 @@
 | 1. Открытие профиля другого пользователя |   |
 |  | 2. Предоставление пользователю информации о профиле другого пользователя. Информация: <br/>- username;<br/>- фото профиля;<br/>- лента пользователя.<br/>Пользователю представлены так же: кнопки "Написать сообщение" |
 | 3. Просмотр предоставленной информации. |   |
+
+
+
+
+
+
+### ВИ Просмотр чужой попытки решения
+| ВИ |  Просмотр чужой попытки решения |
+| ------------- | ------------- |
+| Основные лица | Зарегистрированный пользователь |
+| Цель | Увидеть чужую попытку решения |
+| Триггер | Решение пользователя о посещении чужого профиля |
+| Предусловие | Просмотр профиля другого пользователя |
+| Результат | Пользователь просмотрел чужую попытку решения |
+
+| Действия актора | Отклик системы |
+| ------------- | ------------- |
+| 1. Просмотр ленты другого пользователя. Выбор попытки решения из ленты |   |
+|  | 2. Предоставление пользователю информации о попытке решения другого пользователя. Информация: <br/>- название задачи; <br/>- условие задачи; <br/>- текст попытки решения выбранного пользователя; <br/>- характеристики попытки решения (статус, время выполнения, объём занимаемой памяти) |
+| 3. Просмотр предоставленной информации. |   |
+
+
 
 
 
