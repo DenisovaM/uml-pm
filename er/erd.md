@@ -7,4 +7,4 @@
 # Диаграмма базы данных
 PostgreSQL + MongoDB
 
-![bd]((https://github.com/DenisovaM/docs-sum-pm/blob/pics/ПМ%20ЕР%20И%20БД-рабочий%20БД.drawio%20(2).svg)https://github.com/DenisovaM/docs-sum-pm/blob/pics/ПМ%20ЕР%20И%20БД-рабочий%20БД.drawio%20(2).svg)
+![bd](https://github.com/DenisovaM/docs-sum-pm/blob/pics/ПМ%20ЕР%20И%20БД-рабочий%20БД.jpg)https://github.com/DenisovaM/docs-sum-pm/blob/pics/ПМ%20ЕР%20И%20БД-рабочий%20БД.jpg)
