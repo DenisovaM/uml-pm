@@ -2,7 +2,7 @@
 Нотация Мартина </br>
 
 
-![erd]([https://github.com/DenisovaM/uml-pm/blob/pics/erd.jpg](https://github.com/DenisovaM/docs-sum-pm/blob/pics/photo_2023-07-13_16-42-24.jpg))
+![erd](https://github.com/DenisovaM/docs-sum-pm/blob/pics/ПМ%20ЕР%20И%20БД-рабочий%20ЕР.drawio.svg)
 
 # Диаграмма базы данных
 PostgreSQL + MongoDB
