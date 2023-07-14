@@ -477,6 +477,9 @@ paths:
 | 403 | Нет прав доступа |
 | 404 | Элемент не существует |
 
+
+OpenAPI
+
 ```bash
 paths:
   /tasks/{taskID}/attempts/{attemptID}:
@@ -560,4 +563,124 @@ paths:
 
 
 
+```
+
+
+### Общая лента
+
+## `` GET /feed ``
+
+Параметры 
+| Параметр | Обязательность | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | ------------- |
+| limit | Не обязательно | Максимальное количество возвращаемых элементов. По умолчанию 20 | integer |
+| sort | Не обязательно | Сортировка по возрастанию. Сначала новые посты | integer |
+| title | Не обязательно | Отображение задачи с определённым названием | string |
+
+Пример запроса
+`` GET "<baseurl>/v1/feed?limit=20&sort=asc&title=taskname"  ``
+
+
+Ответ
+
+```bash
+{
+    "posts": [
+               {
+                "username": "Имя пользователя",
+                "timeOfPost": "дата и вермя поста",
+                "commentary": "Комментарий пользователя",
+                "title": "Название задачи 1",
+                "level": "Уровень сложности задачи"
+               },
+               {
+                "username": "Имя пользователя",
+                "timeOfPost": "дата и вермя поста",
+                 "commentary": "Комментарий пользователя",
+                "title": "Название задачи 2",
+                "level": "Уровень сложности задачи"
+                },
+              ...
+              ]
+}
+```
+
+
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- |  
+| username | Имя пользователя | string |
+| timeOfPost | Время публикации поста | string |
+| commentary | Комментарий пользователя к посту | string |
+| title | Название задачи | string |
+| level | Уровень сложности задачи, отображаемый в списке постов. Уровни сложности: "easy/medium/hard" | string |
+
+
+
+Коды ответа
+
+| Код | Описание |
+| ------------- | ------------- |
+| 200 | ОК |
+| 403 | Нет прав доступа |
+| 404 | Элемент не существует |
+
+
+OpenAPI
+
+```bash
+paths:
+  /feed:
+    get:
+      summary: General feed
+      description: Returns a list of posts in the general feed.
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of returned items. Default is 20.
+          schema:
+            type: integer
+            minimum: 1
+        - name: sort
+          in: query
+          description: Sorting order for the posts (ascending or descending). Default is descending.
+          schema:
+            type: string
+            enum: [asc, desc]
+        - name: title
+          in: query
+          description: Displaying a post with a specific title.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        username:
+                          type: string
+                          description: User's username
+                        timeOfPost:
+                          type: string
+                          description: Time of the post
+                        commentary:
+                          type: string
+                          description: User's commentary on the post
+                        title:
+                          type: string
+                          description: Title of the task
+                        level:
+                          type: string
+                          description: Difficulty level of the task
+        '403':
+          description: Access denied
+        '404':
+          description: Element not found
 ```
