@@ -420,16 +420,16 @@ paths:
 
 ### Просмотр попыток решения
 
-## `` GET /tasks/{id}/attempts/{id} ``
+## `` GET /tasks/{id}/attempts ``
 
 Параметры 
 | Параметр | Обязательность | Описание | Тип данных |
 | ------------- | ------------- |  ------------- | ------------- |
-| limit | Не обязательно | Максимальное количество возвращаемых элементов. По умолчанию 20 | integer |
+| limit | Не обязательно | Максимальное количество возвращаемых элементов. По умолчанию 10 | integer |
 | sort | Не обязательно | Сортировка по возрастанию. Сначала новые решения | integer |
 
 Пример запроса
-`` GET "<baseurl>/v1/tasks/1111/attempts/1111?limit=20&sort=asc"  ``
+`` GET "<baseurl>/v1/tasks/1111/attempts/1111?limit=10&sort=asc"  ``
 
 Ответ
 
@@ -442,18 +442,21 @@ paths:
                {
                 "status": "решено",
                 "datetime": "дата и время",
-                "language": "Java"
+                "language": "Java",
+                "code": "class Solution {...}",
+                "timeResult": "результат попытки по времени",
+                "volumeResult": "результат попытки по объёму занимаемой памяти"
                },
                {
-                 "status": "решено",
+                "status": "решено",
                 "datetime": "дата и время",
-                "language": "Python"
+                "language": "Python",
+                "code": "class Solution {...}",
+                "timeResult": "результат попытки по времени",
+                 "volumeResult": "результат попытки по объёму занимаемой памяти"
                 },
               ...
-              ],
-   "code": "class Solution {...}",
-    "timeRestrict": "ограничения по времени",
-    "volumeRestrict": "ограничения по объёму занимаемой памяти"
+              ]
 }
 ```
 | Параметр | Описание | Тип данных |
@@ -465,8 +468,8 @@ paths:
 | status | Факт того, решена ли задача пользователем/ Статусы: "решено/не решено" | string |
 | datetime | Дата и время попытки решения | string |
 | code | Код пользователя | string |
-| timeRestrict | Ограничение по времени | string |
-| volumeRestrict | Ограничение по памяти | string |
+| timeResult | Результат попытки по времени | string |
+| volumeResult | Результат попытки по объёму занимаемой памяти | string |
 
 
 Коды ответа
@@ -477,15 +480,12 @@ paths:
 | 403 | Нет прав доступа |
 | 404 | Элемент не существует |
 
-
-OpenAPI
-
 ```bash
 paths:
-  /tasks/{taskID}/attempts/{attemptID}:
+  /tasks/{taskID}/attempts:
     get:
       summary: Viewing a problem solving attempt
-      description: Returns task attempt information for the specified task and attempt IDs.
+      description: Returns task attempts information for the specified task.
       parameters:
         - name: taskID
           in: path
@@ -507,7 +507,7 @@ paths:
           schema:
             type: integer
             minimum: 1
-            default: 20
+            default: 10
         - name: sort
           in: query
           description: Sorting order for the attempts (ascending or descending)
@@ -547,15 +547,15 @@ paths:
                         language:
                           type: string
                           description: The programming language used in the attempt
-                  code:
-                    type: string
-                    description: The user's code
-                  timeRestrict:
-                    type: string
-                    description: The time restriction for the task
-                  volumeRestrict:
-                    type: string
-                    description: The volume restriction for the task
+                        code:
+                          type: string
+                          description: The user's code
+                        timeResult:
+                          type: string
+                          description: Result of a time attempt
+                        volumeResult:
+                          type: string
+                          description: Result of a volume attempt
         '403':
           description: Access denied
         '404':
@@ -564,7 +564,6 @@ paths:
 
 
 ```
-
 
 ### Общая лента
 
@@ -683,4 +682,301 @@ paths:
           description: Access denied
         '404':
           description: Element not found
+```
+
+
+
+
+
+### Список чатов
+
+## `` GET /rooms ``
+
+Параметры 
+| Параметр | Обязательность | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | ------------- |
+| limit | Не обязательно | Максимальное количество возвращаемых элементов. По умолчанию 10 | integer |
+| sort | Не обязательно | Сортировка по возрастанию. Сначала комнаты с новыми сообщениями | integer |
+| interlocutor | Не обязательно | Отображение в списке диалога с определённым собеседником | string |
+
+Пример запроса
+`` GET "<baseurl>/v1/rooms?limit=20&sort=asc&interlocutor=username"  ``
+
+
+Ответ
+
+```bash
+{
+    "rooms": [
+               {
+                "username": "Имя пользователя",
+                "lastMessage": "дата и вермя поста",
+                "dateTime": "Комментарий пользователя"
+               },
+               {
+                "username": "Имя пользователя",
+                "lastMessage": "дата и вермя поста",
+                "dateTime": "Комментарий пользователя"
+                },
+              ...
+              ]
+}
+```
+
+
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- |  
+| username | Юзернейм собеседника | string |
+| lastMessage | Текст последнего сообщения в диалоге | string |
+| dateTime | Дата или время последнего сообщения | string |
+
+Коды ответа
+
+| Код | Описание |
+| ------------- | ------------- |
+| 200 | ОК |
+| 403 | Нет прав доступа |
+
+OpenAPI
+
+
+```bash
+paths:
+  /v1/rooms:
+    get:
+      summary: Get list of rooms
+      parameters:
+        - name: limit
+          in: query
+          description: Limit the number of rooms in the response
+          schema:
+            type: integer
+            default: 10
+          required: false
+        - name: sort
+          in: query
+          description: Sort results (asc - ascending, desc - descending)
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+          required: false
+        - name: interlocutor
+          in: query
+          description: User name of interlocutor
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful request. A list of rooms is returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rooms:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        username:
+                          type: string
+                          description: username
+                        lastMessage:
+                          type: string
+                          description: Text of the last message in the dialog
+                        dateTime:
+                          type: string
+                          description: Date or time of the last message
+        '403':
+         description: Access denied
+```
+
+
+
+
+
+
+
+
+### Создание и хранение чата
+
+## `` POST /rooms ``
+
+
+Пример запроса
+`` POST "<baseurl>/v1/rooms"  ``
+
+
+Тело запроса
+
+```bash
+{
+   "roomID": "1111",
+    users [userID, userID]
+}
+```
+
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | 
+| roomID | Идентификатор комнаты | int64 |
+| userID | Идентификатор пользователя | int64 |
+
+
+Ответ
+
+```bash
+{
+   "isCreated": true,
+}
+```
+
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- |  
+| isCreated | Флаг, что комната создана | boolean |
+
+
+Коды ответа
+
+| Код | Описание |
+| ------------- | ------------- |
+| 201 | Чат создан |
+| 400 | Некорректный запрос |
+
+
+OpenAPI
+
+```bash
+paths:
+  /v1/rooms:
+    post:
+      summary: Create and store a chat
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roomID:
+                  type: integer
+                  format: int64
+                users:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Successful request. The chat is successfully created and stored.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isCreated:
+                    type: boolean
+        '400':
+          description: Bad Request. The room cannot be created with fewer than 2 users.
+
+```
+
+
+
+
+
+
+### Возврат чата
+
+## `` GET /rooms/{id} ``
+
+
+Параметры 
+| Параметр | Обязательность | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | ------------- |
+| id | Обязательно | ID комнаты | string |
+
+Пример запроса
+`` GET "<baseurl>/v1/rooms/1111"  ``
+
+Ответ
+
+```bash
+{
+   "
+}
+```
+
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- |  
+|  |  |  |
+
+
+Коды ответа
+
+| Код | Описание |
+| ------------- | ------------- |
+| 200 | ОК |
+| 400 | Некорректный запрос |
+
+
+
+### Удаление чата
+
+## `` DELETE /rooms/{id} ``
+
+
+Параметры 
+| Параметр | Обязательность | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | ------------- |
+| id | Обязательно | ID комнаты | string |
+
+Ответ
+
+```bash
+{
+   "isDeleted": true
+}
+```
+
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- |  
+| isCreated | Флаг, что комната удалена | boolean |
+
+
+Коды ответа
+
+| Код | Описание |
+| ------------- | ------------- |
+| 200 | ОК |
+| 404 | Несуществующая комната не может быть удалена |
+
+OpenAPI
+
+```bash
+paths:
+  /rooms/{id}:
+    delete:
+      summary: Delete chat room
+      parameters:
+        - name: id
+          in: path
+          description: room ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful request. The room was successfully deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isDeleted:
+                    type: boolean
+                    description: Flag indicating whether the room is deleted.
+        '404':
+          description: Invalid request. You cannot delete a room that does not exist
 ```
