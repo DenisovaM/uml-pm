@@ -814,14 +814,14 @@ paths:
 ```bash
 {
    "roomID": "1111",
-    users [userID, userID]
+    "users": ["userID", "userID"]
 }
 ```
 
 | Параметр | Описание | Тип данных |
 | ------------- | ------------- |  ------------- | 
 | roomID | Идентификатор комнаты | int64 |
-| userID | Идентификатор пользователя | int64 |
+| userID | Идентификатор пользователя | string |
 
 
 Ответ
@@ -887,7 +887,7 @@ paths:
 
 
 
-### Возврат чата
+### Показ определённого чата
 
 ## `` GET /rooms/{id} ``
 
@@ -895,7 +895,7 @@ paths:
 Параметры 
 | Параметр | Обязательность | Описание | Тип данных |
 | ------------- | ------------- |  ------------- | ------------- |
-| id | Обязательно | ID комнаты | string |
+| id | Обязательно | ID чата | string |
 
 Пример запроса
 `` GET "<baseurl>/v1/rooms/1111"  ``
@@ -904,13 +904,29 @@ paths:
 
 ```bash
 {
-   "
+    "users": ["userID", "userID"],
+     "messages"[
+      "message_ID": "111",
+     "room_ID": "1111",
+     "sender": "1111",
+     "content [
+           "message": "message text"
+     ]",
+    "dateTime": "дата и время отправки сообщения",
+    "status": "прочитано"
+     ]
 }
 ```
 
 | Параметр | Описание | Тип данных |
 | ------------- | ------------- |  ------------- |  
-|  |  |  |
+| userID | Идентификатор пользователя | string |
+| message_ID | ID сообщения | string  | 
+| room_ID | ID комнаты | string  |
+| sender | ID отправителя | string  |
+| message | Текст сообщения | string |
+| dateTime | Дата и время отправки сообщения | string  |
+| status | Статус сообщения: "доставлено/не прочитано/прочитано" |  string |
 
 
 Коды ответа
@@ -918,7 +934,75 @@ paths:
 | Код | Описание |
 | ------------- | ------------- |
 | 200 | ОК |
-| 400 | Некорректный запрос |
+| 404 | Нельзя отобразить чат, которого нет |
+
+
+OpenAPI
+
+```bash
+
+paths:
+  /rooms/{id}:
+    get:
+      summary: Retrieve a specific chat
+      parameters:
+        - name: id
+          in: path
+          description: ID of the chat
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. Returns the specified chat.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      type: string
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message_ID:
+                          type: string
+                        room_ID:
+                          type: string
+                        sender:
+                          type: string
+                        content:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              message:
+                                type: string
+                        dateTime:
+                          type: string
+                          format: date-time
+                        status:
+                          type: string
+        '404':
+          description: Cannot display a chat that does not exist.
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -979,4 +1063,130 @@ paths:
                     description: Flag indicating whether the room is deleted.
         '404':
           description: Invalid request. You cannot delete a room that does not exist
+```
+
+
+### Создание сообщения
+
+## `` POST /messages ``
+
+
+Тело запроса
+
+```bash
+{
+   "message_ID": "111",
+   "room_ID": "1111",
+   "sender": "1111",
+   "content [
+           "message": "message text"
+    ]",
+   "dateTime": "дата и время отправки сообщения",
+   "status": "прочитано"
+}
+```
+
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | 
+| message_ID | ID сообщения | string  | 
+| room_ID | ID комнаты | string  |
+| sender | ID отправителя | string  |
+| message | Текст сообщения | string |
+| dateTime | Дата и время отправки сообщения | string  |
+| status | Статус сообщения: "доставлено/не прочитано/прочитано" |  string |
+
+
+
+Ответ
+
+```bash
+{
+   "message_ID": "111",
+   "room_ID": "1111",
+   "sender": "1111",
+   "content [
+           "message": "message text"
+    ]",
+   "dateTime": "дата и время отправки сообщения",
+   "status": "прочитано"
+}
+```
+
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | 
+| message_ID | ID сообщения | string  | 
+| room_ID | ID комнаты | string  |
+| sender | ID отправителя | string  |
+| message | Текст сообщения | string |
+| dateTime | Дата и время отправки сообщения | string  |
+| status | Статус сообщения: "доставлено/не прочитано/прочитано" |  string |
+
+
+
+Коды ответа
+
+| Код | Описание |
+| ------------- | ------------- |
+| 201 | Сообщение создано и сохранено |
+| 400 | Сообщение нельзя отправить в несуществующей комнате или несуществующим пользователем |
+
+
+OpenAPI
+
+```bash
+paths:
+  /messages:
+    post:
+      summary: Create a message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message_ID:
+                  type: string
+                room_ID:
+                  type: string
+                sender:
+                  type: string
+                content:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                dateTime:
+                  type: string
+                status:
+                  type: string
+      responses:
+        '201':
+          description: Message created and saved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message_ID:
+                    type: string
+                  room_ID:
+                    type: string
+                  sender:
+                    type: string
+                  content:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message:
+                          type: string
+                  dateTime:
+                    type: string
+                  status:
+                    type: string
+        '404':
+          description: Cannot send a message to a non-existent room or non-existent user.
 ```
