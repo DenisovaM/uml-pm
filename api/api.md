@@ -1128,7 +1128,7 @@ paths:
 | Код | Описание |
 | ------------- | ------------- |
 | 201 | Сообщение создано и сохранено |
-| 400 | Сообщение нельзя отправить в несуществующей комнате или несуществующим пользователем |
+| 404 | Сообщение нельзя отправить в несуществующей комнате или несуществующим пользователем |
 
 
 OpenAPI
@@ -1189,4 +1189,110 @@ paths:
                     type: string
         '404':
           description: Cannot send a message to a non-existent room or non-existent user.
+```
+
+### Отображение сообщений
+
+## `` GET /messages ``
+
+Параметры 
+| Параметр | Обязательность | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | ------------- |
+| room | Не обязательно | ID комнаты | string |
+| user | Не обязательно | ID пользователя | string |
+
+Пример запроса
+`` GET "<baseurl>/v1/messages?room=chatRoomId&user=userID"  ``
+
+Ответ
+
+```bash
+{
+  "messages"[
+     "message_ID": "111",
+     "room_ID": "1111",
+     "sender": 1111,
+     "content [
+           "message": "message text"
+     ]",
+    "dateTime": "дата и время отправки сообщения",
+    "status": "прочитано"
+     ]
+}
+```
+
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | 
+| message_ID | ID сообщения | string  | 
+| room_ID | ID комнаты | string  |
+| sender | ID отправителя | int64  |
+| message | Текст сообщения | string |
+| dateTime | Дата и время отправки сообщения | string  |
+| status | Статус сообщения: "доставлено/не прочитано/прочитано" |  string |
+
+Коды ответа
+
+| Код | Описание |
+| ------------- | ------------- |
+| 200 | ОК |
+| 404 | Нельзя отобразить сообщения, если чат или собеседник не существует |
+
+
+
+OpenAPI
+
+```bash
+paths:
+  /messages:
+    get:
+      summary: Retrieve messages
+      parameters:
+        - name: room
+          in: query
+          description: ID of the chat room
+          required: false
+          schema:
+            type: string
+        - name: user
+          in: query
+          description: ID of the user
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK. Returns the messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message_ID:
+                          type: string
+                        room_ID:
+                          type: string
+                        sender:
+                          type: integer
+                          format: int64
+                        content:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              message:
+                                type: string
+                        dateTime:
+                          type: string
+                          format: date-time
+                        status:
+                          type: string
+        '404':
+          description: Cannot display messages if the chat or user does not exist.
+
 ```
