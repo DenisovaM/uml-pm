@@ -1243,33 +1243,37 @@ OpenAPI
 
 ```bash
 paths:
-  /messages:
+  /room/{id}/messages:
     post:
       summary: Create a message
+      parameters:
+        - name: id
+          in: path
+          description: ID of the room
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
           application/json:
-            schema:
-              type: object
-              properties:
-                message_ID:
-                  type: string
-                room_ID:
-                  type: string
-                sender:
-                  type: string
-                content:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      message:
-                        type: string
-                dateTime:
-                  type: string
-                status:
-                  type: string
+           schema:
+                type: object
+                properties:
+                  message_ID:
+                    type: string
+                  room_ID:
+                    type: string
+                  sender:
+                    type: string
+                  content:
+                    type: array
+                    items:
+                      type: string
+                  dateTime:
+                    type: string
+                  status:
+                    type: string 
       responses:
         '201':
           description: Message created and saved successfully.
@@ -1287,10 +1291,7 @@ paths:
                   content:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        message:
-                          type: string
+                      type: string
                   dateTime:
                     type: string
                   status:
@@ -1521,14 +1522,18 @@ paths:
 
 ```bash
 {
-  "edit content" [
-           "mew message": "message text"
-     ]"
+  "message_ID": "111",
+     "room_ID": "1111",
+     "sender": 1111,
+     "content" [
+           "message": "message text"
+     ],
+    "dateTime": "дата и время отправки сообщения",
+    "status": "прочитано"
 }
 ```
 | Параметр | Описание | Тип данных |
 | ------------- | ------------- |  ------------- |  
-| new message | Новый текст сообщения | string|
 
 
 Ответ
@@ -1538,22 +1543,15 @@ paths:
      "message_ID": "111",
      "room_ID": "1111",
      "sender": 1111,
-     "editContent" [
-           "new message": "message text"
+     "content" [
+           "message": "message text"
      ],
     "dateTime": "дата и время отправки сообщения",
     "status": "прочитано"
 }
 ```
 
-| Параметр | Описание | Тип данных |
-| ------------- | ------------- |  ------------- |  
-| message_ID | ID сообщения | string  | 
-| room_ID | ID комнаты | string  |
-| sender | ID отправителя | int64  |
-| new message | Новый текст сообщения | string |
-| dateTime | Дата и время отправки сообщения | string  |
-| status | Статус сообщения: "доставлено/не прочитано/прочитано" |  string |
+
 
 
 Коды ответа
@@ -1567,54 +1565,7 @@ paths:
 OpenAPI
 
 ```bash
-paths:
-  /v1/messages/{id}:
-    put:
-      summary: Edit a message
-      parameters:
-        - name: id
-          in: path
-          description: ID of the message
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                editContent:
-                  type: array
-                  items:
-                    type: string
-      responses:
-        '200':
-          description: OK. The message is successfully edited.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message_ID:
-                    type: string
-                  room_ID:
-                    type: string
-                  sender:
-                    type: integer
-                    format: int64
-                  editContent:
-                    type: array
-                    items:
-                      type: string
-                  dateTime:
-                    type: string
-                  status:
-                    type: string
-        '404':
-          description: The specified message does not exist and cannot be edited.
+
 ```
 
 
