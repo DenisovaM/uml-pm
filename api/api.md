@@ -481,6 +481,10 @@ paths:
 | 403 | Нет прав доступа |
 | 404 | Элемент не существует |
 
+
+
+OpenAPI
+
 ```bash
 paths:
   /tasks/{taskID}/attempts:
@@ -565,6 +569,111 @@ paths:
 
 
 ```
+
+
+
+
+
+
+### Просмотр попытки решения
+
+## `` GET /attempts/{id} ``
+
+Параметры 
+| Параметр | Обязательность | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | ------------- |
+| id | Обязательно | ID попытки решения | int64 |
+
+
+Пример запроса
+`` GET "<baseurl>/v1/attempts/1111"  ``
+
+Ответ
+
+```bash
+{
+    "taskID": 1,
+    "title": "Название задачи",
+    "level": "Уровень сложности задачи",
+     "status": "решено",
+     "datetime": "дата и время",
+     "language": "Java",
+     "code": "class Solution {...}",
+     "timeResult": "результат попытки по времени",
+     "volumeResult": "результат попытки по объёму занимаемой памяти"
+}
+```
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- |  
+| taskID | Номер задачи, отображаемый в списке задач | int64 |
+| title | Название задачи, отображаемое в списке задач | string |
+| level | Уровень сложности задачи, отображаемый в списке задач. Уровни сложности: "easy/medium/hard" | string |
+| language | Название ЯП задачи | string |
+| status | Факт того, решена ли задача пользователем/ Статусы: "решено/не решено" | string |
+| datetime | Дата и время попытки решения | string |
+| code | Код пользователя | string |
+| timeResult | Результат попытки по времени | string |
+| volumeResult | Результат попытки по объёму занимаемой памяти | string |
+
+
+Коды ответа
+
+| Код | Описание |
+| ------------- | ------------- |
+| 200 | ОК |
+| 403 | Нет прав доступа |
+| 404 | Элемент не существует |
+
+OpenAPI
+```bash
+paths:
+  /v1/attempts/{id}:
+    get:
+      summary: View an attempt
+      parameters:
+        - name: id
+          in: path
+          description: ID of the attempt
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK. The attempt details are successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  taskID:
+                    type: integer
+                    format: int64
+                  title:
+                    type: string
+                  level:
+                    type: string
+                  status:
+                    type: string
+                  datetime:
+                    type: string
+                  language:
+                    type: string
+                  code:
+                    type: string
+                  timeResult:
+                    type: string
+                  volumeResult:
+                    type: string
+        '403':
+          description: Access denied. The user does not have permission to view the attempt.
+        '404':
+          description: The specified attempt does not exist.
+```
+
+
+
+
 
 ### Общая лента
 
@@ -1069,7 +1178,7 @@ paths:
 
 ### Создание сообщения
 
-## `` POST /messages ``
+## `` POST room/{id}/messages ``
 
 
 Тело запроса
@@ -1077,7 +1186,6 @@ paths:
 ```bash
 {
    "message_ID": "111",
-   "room_ID": "1111",
    "sender": "1111",
    "content [
            "message": "message text"
@@ -1090,7 +1198,6 @@ paths:
 | Параметр | Описание | Тип данных |
 | ------------- | ------------- |  ------------- | 
 | message_ID | ID сообщения | string  | 
-| room_ID | ID комнаты | string  |
 | sender | ID отправителя | string  |
 | message | Текст сообщения | string |
 | dateTime | Дата и время отправки сообщения | string  |
@@ -1398,7 +1505,7 @@ paths:
 
 ### Редактирование сообщения
 
-## `` PUT /messages/{id}/edit ``
+## `` PUT /messages/{id} ``
 
 Параметры 
 | Параметр | Обязательность | Описание | Тип данных |
@@ -1407,7 +1514,7 @@ paths:
 
 
 Пример запроса
-`` PUT "<baseurl>/v1/messages/1111/edit"  ``
+`` PUT "<baseurl>/v1/messages/1111"  ``
 
 
 Тело запроса
@@ -1461,7 +1568,7 @@ OpenAPI
 
 ```bash
 paths:
-  /v1/messages/{id}/edit:
+  /v1/messages/{id}:
     put:
       summary: Edit a message
       parameters:
