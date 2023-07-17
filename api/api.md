@@ -1185,7 +1185,7 @@ paths:
 
 ```bash
 {
-   "message_ID": "111",
+   "message_ID": "1111",
    "sender": "1111",
    "content [
            "message": "message text"
@@ -1308,7 +1308,7 @@ paths:
 | Параметр | Обязательность | Описание | Тип данных |
 | ------------- | ------------- |  ------------- | ------------- |
 | room | Не обязательно | ID комнаты | string |
-| user | Не обязательно | ID пользователя | int64 |
+| user | Не обязательно | ID пользователя | string |
 
 Пример запроса
 `` GET "<baseurl>/v1/messages?room=chatRoomId&user=userID"  ``
@@ -1318,9 +1318,9 @@ paths:
 ```bash
 {
   "messages"[
-     "message_ID": "111",
+     "message_ID": 1111,
      "room_ID": "1111",
-     "sender": 1111,
+     "sender": "1111",
      "content [
            "message": "message text"
      ]",
@@ -1332,9 +1332,9 @@ paths:
 
 | Параметр | Описание | Тип данных |
 | ------------- | ------------- |  ------------- | 
-| message_ID | ID сообщения | string  | 
+| message_ID | ID сообщения | int64 | 
 | room_ID | ID комнаты | string  |
-| sender | ID отправителя | int64  |
+| sender | ID отправителя | string  |
 | message | Текст сообщения | string |
 | dateTime | Дата и время отправки сообщения | string  |
 | status | Статус сообщения: "доставлено/не прочитано/прочитано" |  string |
@@ -1367,8 +1367,7 @@ paths:
           description: ID of the user
           required: false
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: OK. Returns the messages.
@@ -1383,19 +1382,16 @@ paths:
                       type: object
                       properties:
                         message_ID:
-                          type: string
+                          type: integer
+                          format: int64
                         room_ID:
                           type: string
                         sender:
-                          type: integer
-                          format: int64
+                          type: string
                         content:
                           type: array
                           items:
-                            type: object
-                            properties:
-                              message:
-                                type: string
+                            type: string
                         dateTime:
                           type: string
                           format: date-time
@@ -1424,7 +1420,7 @@ paths:
 
 ```bash
 {
-     "message_ID": "111",
+     "message_ID": 1111,
      "room_ID": "1111",
      "sender": 1111,
      "content" [
@@ -1437,7 +1433,7 @@ paths:
 
 | Параметр | Описание | Тип данных |
 | ------------- | ------------- |  ------------- | 
-| message_ID | ID сообщения | string  | 
+| message_ID | ID сообщения | int64  | 
 | room_ID | ID комнаты | string  |
 | sender | ID отправителя | int64  |
 | message | Текст сообщения | string |
@@ -1522,7 +1518,7 @@ paths:
 
 ```bash
 {
-  "message_ID": "111",
+  "message_ID": 1111,
      "room_ID": "1111",
      "sender": 1111,
      "content" [
@@ -1534,13 +1530,17 @@ paths:
 ```
 | Параметр | Описание | Тип данных |
 | ------------- | ------------- |  ------------- |  
-
+| message_ID | ID сообщения | int64 | 
+| sender | ID отправителя | string  |
+| message | Текст сообщения | string |
+| dateTime | Дата и время отправки сообщения | string  |
+| status | Статус сообщения: "доставлено/не прочитано/прочитано" |  string |
 
 Ответ
 
 ```bash
 {
-     "message_ID": "111",
+     "message_ID": 111,
      "room_ID": "1111",
      "sender": 1111,
      "content" [
@@ -1550,7 +1550,13 @@ paths:
     "status": "прочитано"
 }
 ```
-
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- |  
+| message_ID | ID сообщения | int64  | 
+| sender | ID отправителя | string  |
+| message | Текст сообщения | string |
+| dateTime | Дата и время отправки сообщения | string  |
+| status | Статус сообщения: "доставлено/не прочитано/прочитано" |  string |
 
 
 
@@ -1565,6 +1571,67 @@ paths:
 OpenAPI
 
 ```bash
+paths:
+  /messages/{id}:
+    put:
+      summary: Update a message
+      parameters:
+        - name: id
+          in: path
+          description: ID of the message
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message_ID:
+                  type: integer
+                  format: int64
+                room_ID:
+                  type: string
+                sender:
+                  type: integer
+                  format: int64
+                content:
+                  type: array
+                  items:
+                    type: string
+                dateTime:
+                  type: string
+                status:
+                  type: string
+      responses:
+        '200':
+          description: Message updated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message_ID:
+                    type: integer
+                    format: int64
+                  room_ID:
+                    type: string
+                  sender:
+                    type: integer
+                    format: int64
+                  content:
+                    type: array
+                    items:
+                      type: string
+                  dateTime:
+                    type: string
+                  status:
+                    type: string
+        '404':
+          description: Cannot update a non-existent message.
 
 ```
 
