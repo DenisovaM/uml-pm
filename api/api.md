@@ -1,6 +1,10 @@
 
 ## API 
 
+## Swagger Hub
+
+
+[Beercode API](https://app.swaggerhub.com/apis/MARIESDENISOVA_1/BeerCode/v1 "Beercode API") 
 
 ## Version 
 Текущая версия `v1`
@@ -60,81 +64,6 @@
 
 
 
-OpenAPI 
-
-
-```bash
-paths:
-  /tasks:
-    get:
-      summary: Getting the list of tasks
-      description: Returns a list of tasks that satisfy the specified parameters.
-      parameters:
-        - name: level
-          in: query
-          description: Displaying tasks with a certain level of difficulty
-          schema:
-            type: string
-          example: easy
-        - name: status
-          in: query
-          description: Displaying tasks with a specific status
-          schema:
-            type: string
-          example: решено
-        - name: title
-          in: query
-          description: Displaying a task with a specific name
-          schema:
-            type: string
-          example: taskname
-        - name: limit
-          in: query
-          description: Maximum number of returned items
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: 20
-        - name: sort
-          in: query
-          description: Sorting order for the tasks (ascending or descending)
-          schema:
-            type: string
-            enum: [asc, desc]
-            default: asc
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  tasks:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        taskID:
-                          type: integer
-                          format: int64
-                          description: The ID of the task
-                        title:
-                          type: string
-                          description: The title of the task
-                        level:
-                          type: string
-                          description: The difficulty level of the task
-                        status:
-                          type: string
-                          description: The status of the task
-        '404':
-          description: The element does not exist
-
-
-```
-
 
 
 
@@ -150,6 +79,12 @@ paths:
 ### Просмотр задачи
 
 ## `` GET /tasks/{id} ``
+
+
+Параметры 
+| Параметр | Обязательность | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | ------------- |
+| id | Обязательно | ID задачи | int64 |
 
 Пример запроса
 `` GET "<baseurl>/v1/tasks/1111" ``
@@ -222,85 +157,6 @@ paths:
 | 404 | Элемент не существует |
 
 
-OpenAPI
-```bash
-paths:
-  /tasks/{id}:
-    get:
-      summary: Task preview
-      description: Returns task information for the specified identifier.
-      parameters:
-        - name: id
-          in: path
-          description: Task ID
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  taskID:
-                    type: integer
-                    format: int64
-                    description: The ID of the task
-                  title:
-                    type: string
-                    description: The title of the task
-                  description:
-                    type: string
-                    description: The description of the task
-                  level:
-                    type: string
-                    description: The difficulty level of the task
-                  examples:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        input:
-                          type: string
-                          description: The input data of the example
-                        output:
-                          type: string
-                          description: The expected output of the example
-                        explanation:
-                          type: string
-                          description: Explanation of the example
-                  status:
-                    type: string
-                    description: The status of the task
-                  languages:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        language:
-                          type: string
-                          description: The name of the programming language
-                        solutionTemplate:
-                          type: string
-                          description: The solution template for the task
-                  timeRestrict:
-                    type: string
-                    description: The time restriction for the task
-                  volumeRestrict:
-                    type: string
-                    description: The volume restriction for the task
-        '403':
-          description: Access denied
-        '404':
-          description: Element not found
-
-```
-
-
-
 
 
 
@@ -309,6 +165,12 @@ paths:
 ### Отправка попытки решения
 
 ## `` POST /tasks/{id}/attempts ``
+
+
+Параметры 
+| Параметр | Обязательность | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | ------------- |
+| id | Обязательно | ID попытки | int64 |
 
 Пример запроса
 `` POST "<baseurl>/v1/tasks/1111/attempts" ``
@@ -351,68 +213,6 @@ paths:
 | 201 | Попытка создана |
 | 400 | Некорректный запрос |
 | 404 | Элемент не существует |
-
-
-OpenAPI
-
-```bash
-paths:
-  /tasks/{id}/attempts:
-    post:
-      summary: Sending an attempt to solve a task
-      description: Allows the user to submit an attempt to solve a problem in a specific programming language
-      parameters:
-        - name: id
-          in: path
-          description: Task ID
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                userID:
-                  type: integer
-                  format: int64
-                  description: User ID
-                language:
-                  type: string
-                  description: Programming language name
-                code:
-                  type: string
-                  description: Solution
-      responses:
-        '201':
-          description: Successfully created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  attemptID:
-                    type: integer
-                    format: int64
-                    description: ID of the created attempt
-                  userID:
-                    type: integer
-                    format: int64
-                    description: User ID
-                  language:
-                    type: string
-                    description: Programming language name
-        '400':
-          description: Incorrect request
-        '404':
-          description: Task not found
-
-
-
-```
 
 
 
@@ -483,95 +283,6 @@ paths:
 
 
 
-OpenAPI
-
-```bash
-paths:
-  /tasks/{taskID}/attempts:
-    get:
-      summary: Viewing a problem solving attempt
-      description: Returns task attempts information for the specified task.
-      parameters:
-        - name: taskID
-          in: path
-          description: Task ID
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: attemptID
-          in: path
-          description: Attempt ID
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: limit
-          in: query
-          description: Maximum number of returned items
-          schema:
-            type: integer
-            minimum: 1
-            default: 10
-        - name: sort
-          in: query
-          description: Sorting order for the attempts (ascending or descending)
-          schema:
-            type: string
-            enum: [asc, desc]
-            default: asc
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  taskID:
-                    type: integer
-                    format: int64
-                    description: The ID of the task
-                  title:
-                    type: string
-                    description: The title of the task
-                  level:
-                    type: string
-                    description: The difficulty level of the task
-                  attempts:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        status:
-                          type: string
-                          description: The status of the attempt
-                        date:
-                          type: string
-                          description: The date of the attempt
-                        language:
-                          type: string
-                          description: The programming language used in the attempt
-                        code:
-                          type: string
-                          description: The user's code
-                        timeResult:
-                          type: string
-                          description: Result of a time attempt
-                        volumeResult:
-                          type: string
-                          description: Result of a volume attempt
-        '403':
-          description: Access denied
-        '404':
-          description: Element not found
-
-
-
-```
-
-
-
 
 
 
@@ -624,52 +335,7 @@ paths:
 | 403 | Нет прав доступа |
 | 404 | Элемент не существует |
 
-OpenAPI
-```bash
-paths:
-  /v1/attempts/{id}:
-    get:
-      summary: View an attempt
-      parameters:
-        - name: id
-          in: path
-          description: ID of the attempt
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK. The attempt details are successfully retrieved.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  taskID:
-                    type: integer
-                    format: int64
-                  title:
-                    type: string
-                  level:
-                    type: string
-                  status:
-                    type: string
-                  datetime:
-                    type: string
-                  language:
-                    type: string
-                  code:
-                    type: string
-                  timeResult:
-                    type: string
-                  volumeResult:
-                    type: string
-        '403':
-          description: Access denied. The user does not have permission to view the attempt.
-        '404':
-          description: The specified attempt does not exist.
-```
+
 
 
 
@@ -734,66 +400,6 @@ paths:
 | 404 | Элемент не существует |
 
 
-OpenAPI
-
-```bash
-paths:
-  /feed:
-    get:
-      summary: General feed
-      description: Returns a list of posts in the general feed.
-      parameters:
-        - name: limit
-          in: query
-          description: Maximum number of returned items. Default is 20.
-          schema:
-            type: integer
-            minimum: 1
-        - name: sort
-          in: query
-          description: Sorting order for the posts (ascending or descending). Default is descending.
-          schema:
-            type: string
-            enum: [asc, desc]
-        - name: title
-          in: query
-          description: Displaying a post with a specific title.
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  posts:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        username:
-                          type: string
-                          description: User's username
-                        timeOfPost:
-                          type: string
-                          description: Time of the post
-                        commentary:
-                          type: string
-                          description: User's commentary on the post
-                        title:
-                          type: string
-                          description: Title of the task
-                        level:
-                          type: string
-                          description: Difficulty level of the task
-        '403':
-          description: Access denied
-        '404':
-          description: Element not found
-```
-
 
 
 
@@ -819,14 +425,18 @@ paths:
 {
     "rooms": [
                {
-                "username": "Имя пользователя",
+                "interlocutor": "Имя пользователя",
                 "lastMessage": "дата и вермя поста",
                 "dateTime": "Комментарий пользователя"
+                 "status": "прочитано",
+                 "notifications": 0
                },
                {
-                "username": "Имя пользователя",
+                "interlocutor": "Имя пользователя",
                 "lastMessage": "дата и вермя поста",
-                "dateTime": "Комментарий пользователя"
+                "dateTime": "Комментарий пользователя",
+                "status": "прочитано",
+                 "notifications": 0
                 },
               ...
               ]
@@ -836,9 +446,11 @@ paths:
 
 | Параметр | Описание | Тип данных |
 | ------------- | ------------- |  ------------- |  
-| username | Юзернейм собеседника | string |
+| interlocutor | Юзернейм собеседника | string |
 | lastMessage | Текст последнего сообщения в диалоге | string |
 | dateTime | Дата или время последнего сообщения | string |
+| status | Статус сообщения (доставлено/не прочитано/прочитано) | string |
+| notifications | Дата или время последнего сообщения | integer |
 
 Коды ответа
 
@@ -846,65 +458,6 @@ paths:
 | ------------- | ------------- |
 | 200 | ОК |
 | 403 | Нет прав доступа |
-
-OpenAPI
-
-
-```bash
-paths:
-  /v1/rooms:
-    get:
-      summary: Get list of rooms
-      parameters:
-        - name: limit
-          in: query
-          description: Limit the number of rooms in the response
-          schema:
-            type: integer
-            default: 10
-          required: false
-        - name: sort
-          in: query
-          description: Sort results (asc - ascending, desc - descending)
-          schema:
-            type: string
-            enum: [asc, desc]
-            default: asc
-          required: false
-        - name: interlocutor
-          in: query
-          description: User name of interlocutor
-          schema:
-            type: string
-          required: false
-      responses:
-        '200':
-          description: Successful request. A list of rooms is returned.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  rooms:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        username:
-                          type: string
-                          description: username
-                        lastMessage:
-                          type: string
-                          description: Text of the last message in the dialog
-                        dateTime:
-                          type: string
-                          description: Date or time of the last message
-        '403':
-         description: Access denied
-```
-
-
-
 
 
 
@@ -953,45 +506,6 @@ paths:
 | ------------- | ------------- |
 | 201 | Чат создан |
 | 400 | Некорректный запрос |
-
-
-OpenAPI
-
-```bash
-paths:
-  /v1/rooms:
-    post:
-      summary: Create and store a chat
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                roomID:
-                  type: integer
-                  format: int64
-                users:
-                  type: array
-                  items:
-                    type: string
-      responses:
-        '201':
-          description: Chat created. The chat is successfully created and stored.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  roomID:
-                    type: integer
-                    format: int64
-        '400':
-          description: Bad Request. The room cannot be created with fewer than 2 users.
-
-```
-
 
 
 
@@ -1047,61 +561,6 @@ paths:
 | 404 | Нельзя отобразить чат, которого нет |
 
 
-OpenAPI
-
-```bash
-
-paths:
-  /rooms/{id}:
-    get:
-      summary: Retrieve a specific chat
-      parameters:
-        - name: id
-          in: path
-          description: ID of the chat
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK. Returns the specified chat.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  users:
-                    type: array
-                    items:
-                      type: string
-                  messages:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        message_ID:
-                          type: string
-                        room_ID:
-                          type: string
-                        sender:
-                          type: string
-                        content:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              message:
-                                type: string
-                        dateTime:
-                          type: string
-                          format: date-time
-                        status:
-                          type: string
-        '404':
-          description: Cannot display a chat that does not exist.
-
-```
-
 
 
 
@@ -1146,40 +605,16 @@ paths:
 | 200 | ОК |
 | 404 | Несуществующая комната не может быть удалена |
 
-OpenAPI
 
-```bash
-paths:
-  /rooms/{id}:
-    delete:
-      summary: Delete chat room
-      parameters:
-        - name: id
-          in: path
-          description: room ID
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful request. The room was successfully deleted.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  isDeleted:
-                    type: boolean
-                    description: Flag indicating whether the room is deleted.
-        '404':
-          description: Invalid request. You cannot delete a room that does not exist
-```
 
 
 ### Создание сообщения
 
 ## `` POST room/{id}/messages ``
-
+Параметры 
+| Параметр | Обязательность | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | ------------- |
+| id | Обязательно | ID чата | int64 |
 
 Тело запроса
 
@@ -1239,66 +674,7 @@ paths:
 | 404 | Сообщение нельзя отправить в несуществующей комнате или несуществующим пользователем |
 
 
-OpenAPI
 
-```bash
-paths:
-  /room/{id}/messages:
-    post:
-      summary: Create a message
-      parameters:
-        - name: id
-          in: path
-          description: ID of the room
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-           schema:
-                type: object
-                properties:
-                  message_ID:
-                    type: string
-                  room_ID:
-                    type: string
-                  sender:
-                    type: string
-                  content:
-                    type: array
-                    items:
-                      type: string
-                  dateTime:
-                    type: string
-                  status:
-                    type: string 
-      responses:
-        '201':
-          description: Message created and saved successfully.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message_ID:
-                    type: string
-                  room_ID:
-                    type: string
-                  sender:
-                    type: string
-                  content:
-                    type: array
-                    items:
-                      type: string
-                  dateTime:
-                    type: string
-                  status:
-                    type: string
-        '404':
-          description: Cannot send a message to a non-existent room or non-existent user.
-```
 
 ### Отображение сообщений
 
@@ -1348,59 +724,7 @@ paths:
 
 
 
-OpenAPI
 
-```bash
-paths:
-  /messages:
-    get:
-      summary: Retrieve messages
-      parameters:
-        - name: room
-          in: query
-          description: ID of the chat room
-          required: false
-          schema:
-            type: string
-        - name: user
-          in: query
-          description: ID of the user
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK. Returns the messages.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  messages:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        message_ID:
-                          type: integer
-                          format: int64
-                        room_ID:
-                          type: string
-                        sender:
-                          type: string
-                        content:
-                          type: array
-                          items:
-                            type: string
-                        dateTime:
-                          type: string
-                          format: date-time
-                        status:
-                          type: string
-        '404':
-          description: Cannot display messages if the chat or user does not exist.
-
-```
 
 
 ### Показ определённого сообщения
@@ -1449,50 +773,6 @@ paths:
 
 
 
-OpenAPI
-
-```bash
-paths:
-  /v1/messages/{id}:
-    get:
-      summary: Retrieve a specific message
-      parameters:
-        - name: id
-          in: path
-          description: ID of the message
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK. Returns the specified message.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message_ID:
-                    type: string
-                  room_ID:
-                    type: string
-                  sender:
-                    type: integer
-                    format: int64
-                  content:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        message:
-                          type: string
-                  dateTime:
-                    type: string
-                  status:
-                    type: string
-        '404':
-          description: Cannot display the message if it does not exist.
-```
 
 
 
@@ -1568,129 +848,13 @@ paths:
 | 404 | Нельзя отредактировать несуществующий элемент |
 
 
-OpenAPI
-
-```bash
-paths:
-  /messages/{id}:
-    put:
-      summary: Update a message
-      parameters:
-        - name: id
-          in: path
-          description: ID of the message
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                message_ID:
-                  type: integer
-                  format: int64
-                room_ID:
-                  type: string
-                sender:
-                  type: integer
-                  format: int64
-                content:
-                  type: array
-                  items:
-                    type: string
-                dateTime:
-                  type: string
-                status:
-                  type: string
-      responses:
-        '200':
-          description: Message updated successfully.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message_ID:
-                    type: integer
-                    format: int64
-                  room_ID:
-                    type: string
-                  sender:
-                    type: integer
-                    format: int64
-                  content:
-                    type: array
-                    items:
-                      type: string
-                  dateTime:
-                    type: string
-                  status:
-                    type: string
-        '404':
-          description: Cannot update a non-existent message.
-
-```
 
 
 
 
 
 
-### Редактирование статуса сообщения
 
-## `` PUT /messages/{id}/status``
-
-Параметры 
-| Параметр | Обязательность | Описание | Тип данных |
-| ------------- | ------------- |  ------------- | ------------- |
-| id | Обязательно | ID сообщения | int64 |
-
-
-Пример запроса
-`` PUT "<baseurl>/v1/messages/1111/status"  ``
-
-
-Тело запроса
-
-```bash
-{
-  "
-}
-```
-| Параметр | Описание | Тип данных |
-| ------------- | ------------- |  ------------- |  
-| userID | Идентификатор пользователя | int64 |
-
-
-Ответ
-
-```bash
-{
-  "
-}
-```
-
-| Параметр | Описание | Тип данных |
-| ------------- | ------------- |  ------------- |  
-| attemptID | Идентификатор пользователя | int64 |
-
-
-Коды ответа
-
-| Код | Описание |
-| ------------- | ------------- |
-| 200 |  |
-| 404 | Нельзя отредактировать несуществующий элемент |
-
-
-OpenAPI
-
-```bash
-```
 
 
 
@@ -1742,21 +906,570 @@ OpenAPI
 OpenAPI
 
 ```bash
+openapi: 3.0.0
+info:
+  title: Swagger Beercode - OpenAPI 3.0
+  description: Beercode OpenAPI
+  version: v1
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/MARIESDENISOVA_1/BeerCode/v1
+  - url: http://localhost:8080/api/v1
+    description: Dev server  
+tags:
+  - name: Tasks
+    description: "Методы задач"
+  - name: Rooms
+    description: "Методы чатов"
+  - name: Messages
+    description: "Методы сообщений"
+  - name: Auth
+    description: "Методы авторизации"
+  - name: Feed
+    description: "Методы ленты, постов"
+  - name: User
+    description: "Методы пользователя"
+  - name: Info
+    description: "Методы вытаскивания информации"
 paths:
-  /v1/messages/{id}:
-    delete:
-      summary: Delete a message
+  /tasks:
+    get:
+      summary: Получение списка задач
+      tags: 
+        - Tasks
+      description: Возвращает список задач, удовлетворяющих указанным параметрам.
+      parameters:
+        - name: level
+          in: query
+          description: Отображение задач с определенным уровнем сложности
+          schema:
+            type: string
+          example: easy
+        - name: status
+          in: query
+          description: Отображение задач с определенным статусом
+          schema:
+            type: string
+          example: решено
+        - name: title
+          in: query
+          description: Отображение задачи с определенным названием
+          schema:
+            type: string
+          example: taskname
+        - name: limit
+          in: query
+          description: Максимальное количество возвращаемых элементов
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: sort
+          in: query
+          description: Порядок сортировки задач (возрастание или убывание)
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Task'
+        '404':
+          description: Элемент не найден
+
+  /tasks/{id}:
+    get:
+      summary: Предварительный просмотр задачи
+      tags: 
+        - Tasks
+      description: Возвращает информацию о задаче по указанному идентификатору.
       parameters:
         - name: id
           in: path
-          description: ID of the message
+          description: Идентификатор задачи
           required: true
           schema:
             type: integer
             format: int64
       responses:
         '200':
-          description: OK. The message is successfully deleted.
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDetails'
+        '403':
+          description: Доступ запрещен
+        '404':
+          description: Элемент не найден
+
+  /tasks/{id}/attempts:
+    post:
+      summary: Отправка попытки решения задачи
+      tags:
+        - Tasks
+      description: Позволяет пользователю отправить попытку решения задачи на определенном языке программирования
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор задачи
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Attempt'
+      responses:
+        '201':
+          description: Успешно создано
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptCreated'
+        '400':
+          description: Некорректный запрос
+        '403':
+          description: Доступ запрещен
+        '404':
+          description: Задача не найдена
+    get:
+      summary: Просмотр попытки решения задачи
+      tags:
+        - Tasks
+      description: Возвращает информацию о попытках решения задачи для указанной задачи.
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор задачи
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: limit
+          in: query
+          description: Максимальное количество возвращаемых элементов
+          schema:
+            type: integer
+            minimum: 1
+            default: 10
+        - name: sort
+          in: query
+          description: Порядок сортировки попыток (возрастание или убывание)
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskAttempts'
+        '403':
+          description: Доступ запрещен
+        '404':
+          description: Элемент не найден
+
+
+
+  
+          
+  /attempts/{id}:
+    get:
+      summary: Просмотр попытки
+      tags:
+        - Tasks
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор попытки
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK. Подробности попытки успешно получены.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptDetails'
+        '403':
+          description: Доступ запрещен. Пользователь не имеет права просматривать попытку.
+        '404':
+          description: Указанная попытка не существует.
+
+  /feed:
+    get:
+      summary: Общая лента
+      tags:
+        - Feed
+      description: Возвращает список сообщений в общей ленте.
+      parameters:
+        - name: limit
+          in: query
+          description: Максимальное количество возвращаемых элементов. По умолчанию - 20.
+          schema:
+            type: integer
+            minimum: 1
+        - name: sort
+          in: query
+          description: Порядок сортировки сообщений (возрастание или убывание). По умолчанию - убывание.
+          schema:
+            type: string
+            enum: [asc, desc]
+        - name: title
+          in: query
+          description: Отображение сообщения с определенным заголовком.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedPosts'
+        '404':
+          description: Элемент не найден
+  
+  /posts/{id}:
+    get:
+      summary: Получение поста
+      tags:
+        - Feed
+      description: Показывает пост из ленты
+      parameters:
+        - name: id
+          in: path
+          description: ID поста
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK. Возвращает определённый пост.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          description: Невозможно отобразить несуществующий пост.
+  
+  /posts:
+    post:
+      summary: Опубликовать пост
+      tags:
+        - Feed
+      description: Публикация поста
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPost'
+      responses:
+        '201':
+          description: Успешно создано
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewPost'
+        '400':
+          description: Некорректные данные
+        
+  /users/{id}:
+    get:
+      summary: Профиль пользователя
+      tags:
+        - User
+      description: Показывает профиль пользователя
+      parameters:
+        - name: id
+          in: path
+          description: ID пользователя
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK. Возвращает профиль определённого пользователя.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Необходима авторизация
+        '404':
+          description: Невозможно отобразить несуществующего пользователя.
+          
+  /user/{id}/settings:
+    get:
+      summary: Настройки профиля пользователя
+      tags:
+        - User
+      description: Показывает настройки профиля пользователя
+      parameters:
+        - name: id
+          in: path
+          description: ID пользователя
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK. Возвращает профиль определённого пользователя.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSettings'
+        '400':
+          description: --
+    put:
+      summary: Обновление настроек проофиля
+      tags:
+        - User
+      description: Обновляет настройки профиля пользователя
+      parameters:
+        - name: id
+          in: path
+          description: ID пользователя
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSettings'
+      responses:
+        '200':
+          description: OK. Возвращает настройки профиля определённого пользователя.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSettings'
+        '401':
+          description: Введены некорректные данные
+      
+  /rooms:
+    post:
+      summary: Создание и сохранение чата
+      tags:
+        - Rooms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Chat'
+      responses:
+        '201':
+          description: Чат успешно создан и сохранен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatCreated'
+        '400':
+          description: Неверный запрос. Чат не может быть создан с менее чем 2 пользователями
+    get:
+      summary: Список комнат
+      tags:
+      - Rooms
+      parameters:
+        - name: limit
+          in: query
+          description: Количество чатов в списке
+          schema:
+            type: integer
+            default: 10
+          required: false
+        - name: sort
+          in: query
+          description: Сортировка 
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+          required: false
+        - name: interlocutor
+          in: query
+          description: Юзернейм собеседника
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Успешно, список чатов возвращён
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chats'
+        '403':
+         description: Access denied
+
+  /rooms/{id}:
+    get:
+      summary: Получение определенного чата
+      tags:
+        - Rooms
+      parameters:
+        - name: id
+          in: path
+          description: ID чата
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. Возвращает указанный чат.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatDetails'
+        '404':
+          description: Невозможно отобразить несуществующий чат.
+    delete:
+      summary: Удаление чата
+      tags:
+        - Rooms
+      parameters:
+        - name: id
+          in: path
+          description: ID чата
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Успешное удаление чата
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isDeleted:
+                    type: boolean
+                    description: Флаг, что чат удалён
+        '404':
+          description: НЕльзя удалить несуществующий чат
+
+  /rooms/{id}/messages:
+    post:
+      summary: Создание сообщения
+      tags:
+        - Messages
+      parameters:
+        - name: id
+          in: path
+          description: ID комнаты
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '201':
+          description: Сообщение создано и успешно сохранено.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: Невозможно отправить сообщение в несуществующую комнату или несуществующего пользователя.
+
+
+  
+         
+  /messages/{id}:
+    get:
+      summary: Возврат конкретного сообщения
+      tags: 
+      - Messages
+      parameters:
+        - name: id
+          in: path
+          description: ID сообщения
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK. Показ сообщения.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/Message'
+        '404':
+          description: Нельзя отобразить несуществующее сообщение
+    put:
+      summary: Редактирование сообщения
+      tags:
+      - Messages
+      parameters:
+        - name: id
+          in: path
+          description: ID сообщения
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '200':
+          description: Успешное обновление
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: НЕльзя обновить несуществующее сообщение
+    delete:
+      summary: Удаление сообщения
+      tags:
+      - Messages
+      parameters:
+        - name: id
+          in: path
+          description: ID сообщения
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK. Сообщение успешно удалено
           content:
             application/json:
               schema:
@@ -1765,5 +1478,536 @@ paths:
                   isDeleted:
                     type: boolean
         '404':
-          description: The specified message does not exist and cannot be deleted.
+          description: Несуществующее сообщение не может быть удалено
+  /messages:
+    get:
+      summary: Получение сообщения
+      tags:
+      - Messages
+      parameters:
+        - name: room
+          in: query
+          description: ID чата
+          required: false
+          schema:
+            type: string
+        - name: user
+          in: query
+          description: ID пользователя
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. Возврат сообщения
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: Нельзя отобразить сообщение, если пользователь или чат не существуют
+
+  /auth/signin:
+    post:
+      summary: Вход
+      tags:
+      - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignIn'
+      responses:
+        '201':
+          description: OK. Возврат токена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '400':
+          description: Введены некорректные данные
+        '401':
+          description: Пользователь не зарегистрирован
+        
+  
+  /auth/signup:
+    post:
+      summary: Регистрация
+      tags:
+      - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUp'
+      responses:
+        '201':
+          description: OK. Возврат токена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '400':
+          description: Введены некорректные данные
+        '409':
+          description: Пользователь уже зарегистрирован
+          
+  /info/github:
+    post:
+      summary: Вытягивание информации с гитхаба
+      tags:
+      - Info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoGitHub'
+      responses:
+        '201':
+          description: OK. Занесение данных
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoGitHub'
+        '400':
+          description: Введены некорректные данные
+  
+  /info/google:
+    post:
+      summary: Вытягивание информации из гугла
+      tags:
+      - Info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoGoogle'
+      responses:
+        '201':
+          description: OK. Занесение данных
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoGoogle'
+        '400':
+          description: Введены некорректные данные
+      
+      
+      
+components:
+  schemas:
+    
+    Task:
+      type: object
+      properties:
+        taskID:
+          type: integer
+          format: int64
+          description: Идентификатор задачи
+        title:
+          type: string
+          description: Название задачи
+        level:
+          type: string
+          description: Уровень сложности задачи
+        status:
+          type: string
+          description: Статус задачи
+    TaskDetails:
+      allOf:
+        - $ref: '#/components/schemas/Task'
+        - type: object
+          properties:
+            description:
+              type: string
+              description: Описание задачи
+            examples:
+              type: array
+              items:
+                type: object
+                properties:
+                  input:
+                    type: string
+                    description: Входные данные примера
+                  output:
+                    type: string
+                    description: Ожидаемый результат примера
+                  explanation:
+                    type: string
+                    description: Объяснение примера
+            languages:
+              type: array
+              items:
+                type: object
+                properties:
+                  language:
+                    type: string
+                    description: Название языка программирования
+                  solutionTemplate:
+                    type: string
+                    description: Шаблон решения для задачи
+            timeRestrict:
+              type: string
+              description: Ограничение по времени для задачи
+            volumeRestrict:
+              type: string
+              description: Ограничение по объему для задачи
+              
+              
+    Attempt:
+      type: object
+      properties:
+        userID:
+          type: integer
+          format: int64
+          description: Идентификатор пользователя
+        language:
+          type: string
+          description: Название языка программирования
+        code:
+          type: string
+          description: Решение
+          
+          
+    AttemptCreated:
+      type: object
+      properties:
+        attemptID:
+          type: integer
+          format: int64
+          description: ID созданной попытки
+        userID:
+          type: integer
+          format: int64
+          description: Идентификатор пользователя
+        language:
+          type: string
+          description: Название языка программирования
+    TaskAttempts:
+      type: object
+      properties:
+        taskID:
+          type: integer
+          format: int64
+          description: Идентификатор задачи
+        title:
+          type: string
+          description: Название задачи
+        level:
+          type: string
+          description: Уровень сложности задачи
+        attempts:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                description: Статус попытки
+              date:
+                type: string
+                description: Дата попытки
+              language:
+                type: string
+                description: Язык программирования, использованный в попытке
+              code:
+                type: string
+                description: Код пользователя
+              timeResult:
+                type: string
+                description: Результат попытки по времени
+              volumeResult:
+                type: string
+                description: Результат попытки по объему
+                
+                
+    AttemptDetails:
+      type: object
+      properties:
+        taskID:
+          type: integer
+          format: int64
+        title:
+          type: string
+        level:
+          type: string
+        status:
+          type: string
+        datetime:
+          type: string
+        language:
+          type: string
+        code:
+          type: string
+        timeResult:
+          type: string
+        volumeResult:
+          type: string
+    
+    Post:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Имя пользователя
+        timeOfPost:
+          type: string
+          description: Время публикации
+        commentary:
+          type: string
+          description: Комментарий пользователя к сообщению
+        title:
+          type: string
+          description: Заголовок задачи
+        level:
+          type: string
+          description: Уровень сложности задачи
+          
+    FeedPosts:
+      type: object
+      properties:
+        posts:
+          type: array
+          items:
+            type: object
+            properties:
+              username:
+                type: string
+                description: Имя пользователя
+              timeOfPost:
+                type: string
+                description: Время публикации
+              commentary:
+                type: string
+                description: Комментарий пользователя к сообщению
+              title:
+                type: string
+                description: Заголовок задачи
+              level:
+                type: string
+                description: Уровень сложности задачи
+    NewPost:
+      type: object
+      properties:
+        postID:
+          type: integer
+          format: int64
+          description: ID сообщения
+        username:
+          type: string
+          description: Имя пользователя
+        timeOfPost:
+          type: string
+          description: Время публикации
+        commentary:
+          type: string
+          description: Комментарий пользователя к сообщению
+        title:
+          type: string
+          description: Заголовок задачи
+        level:
+          type: string
+          description: Уровень сложности задачи
+        code:
+          type: string
+          description: Текст попытки решения
+    
+    Chat:
+      type: object
+      properties:
+        roomID:
+          type: integer
+          format: int64
+        users:
+          type: array
+          items:
+            type: string
+    ChatCreated:
+      type: object
+      properties:
+        roomID:
+          type: integer
+          format: int64
+    ChatDetails:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: string
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              message_ID:
+                type: string
+              room_ID:
+                type: string
+              sender:
+                type: string
+              content:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+              dateTime:
+                type: string
+                format: date-time
+              status:
+                type: string
+    Message:
+      type: object
+      properties:
+        message_ID:
+          type: integer
+          format: int64
+          description: ID сообщения
+        room_ID:
+          type: string
+        sender:
+          type: integer
+          format: int64
+        content:
+          type: array
+          items:
+            type: string
+        dateTime:
+          type: string
+        status:
+          type: string
+      
+    Chats:
+      type: object
+      properties:
+        interlocutor:
+          type: string
+        lastMessage:
+            type: string
+        dateTime:
+          type: string
+        status:
+          type: string  
+        notifications:
+          type: integer
+          
+          
+    SignIn:
+      type: object
+      properties:
+        usernameOrEmail:
+          type: string
+          description: Имя пользователя или почта
+        password:
+          type: string
+          description: Пароль
+      required:
+        - usernameOrEmail
+        - password
+        
+    SignUp:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Имя пользователя
+        email:
+          type: string
+          description: Почта пользователя
+        password:
+          type: string
+          description: Пароль
+      required:
+        - username
+        - email
+        - password
+        
+    InfoGitHub:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID в сервисе
+        username:
+          type: string
+          description: Имя пользователя
+        email:
+          type: string
+          description: Почта пользователя
+        login:
+          type: string
+          description: Логин
+    
+    InfoGoogle:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID в сервисе
+        username:
+          type: string
+          description: Имя пользователя
+        login:
+          type: string
+          description: Логин (email)
+        
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        userImage:
+          type: string
+        dateOfBirth:
+          type: string
+        posts:
+          type: array
+          items:
+            type: object
+            properties:
+              timeOfPost:
+                type: string
+                description: Время публикации
+              commentary:
+                type: string
+                description: Комментарий пользователя к сообщению
+              title:
+                type: string
+                description: Заголовок задачи
+              level:
+                type: string
+                description: Уровень сложности задачи
+                
+    UserSettings:
+      type: object
+      properties:
+        username:
+          type: string
+        userImage:
+          type: string
+        dateOfBirth:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        password:
+          type: string
+        
+    
+    Token:
+      type: object
+      properties:
+        acessToken:
+          type: string
+        refreshToken:
+          type: string
+        time:
+          type: string
 ```
