@@ -6,6 +6,9 @@
 
 [Beercode API](https://app.swaggerhub.com/apis/MARIESDENISOVA_1/BeerCode/v1 "Beercode API") 
 
+[OpenAPI ->](#openapi)
+
+
 ## Version 
 Текущая версия `v1`
 
@@ -1172,7 +1175,7 @@
 
 
 
-## OpenAPI
+# OpenAPI
 
 ```bash
 openapi: 3.0.0
@@ -1399,10 +1402,12 @@ paths:
             minimum: 1
         - name: sort
           in: query
-          description: Порядок сортировки постов (возрастание или убывание). По умолчанию - убывание.
+          description: Сортировка  (Сначала - новые посты)
           schema:
             type: string
             enum: [asc, desc]
+            default: asc
+          required: false
         - name: title
           in: query
           description: Отображение постов с определенным заголовком.
@@ -2025,6 +2030,9 @@ components:
         username:
           type: string
           description: Имя пользователя
+        userImage:
+          type: string
+          description: Ссылка на фото пользователя
         timeOfPost:
           type: string
           description: Время публикации
@@ -2056,6 +2064,9 @@ components:
               username:
                 type: string
                 description: Имя пользователя
+              userImage:
+                type: string
+                description: Ссылка на фото пользователя
               timeOfPost:
                 type: string
                 description: Время публикации
@@ -2123,6 +2134,9 @@ components:
                 type: string
               sender:
                 type: string
+              userImage:
+                type: string
+                description: Ссылка на фото пользователя
               content:
                 type: array
                 items:
@@ -2147,6 +2161,9 @@ components:
         sender:
           type: integer
           format: int64
+        userImage:
+          type: string
+          description: Ссылка на фото пользователя
         content:
           type: array
           items:
