@@ -6,7 +6,7 @@
 
 [Beercode API](https://app.swaggerhub.com/apis/MARIESDENISOVA_1/BeerCode/v1 "Beercode API") 
 
-[OpenAPI ->](#openapi)
+[OpenAPI ↓](#openapi)
 
 
 ## Version 
