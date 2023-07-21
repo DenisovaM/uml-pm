@@ -404,6 +404,135 @@
 
 
 
+
+### Пост из ленты
+
+## `` GET /posts/{id} ``
+
+Параметры 
+| Параметр | Обязательность | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | ------------- |
+| id | Обязательно | ID поста | int64 |
+
+Пример запроса
+`` GET "<baseurl>/v1/posts/1111"  ``
+
+Ответ
+
+```bash
+{
+    "posts": [
+               {
+                "username": "Имя пользователя",
+                "timeOfPost": "дата и вермя поста",
+                "commentary": "Комментарий пользователя",
+                "title": "Название задачи 1",
+                "level": "Уровень сложности задачи",
+                "code": "текст решения",
+                 "timeResult": "время выполнения попытки",
+                "volumeResult": "объём попытки"
+               },
+               {
+                "username": "Имя пользователя",
+                "timeOfPost": "дата и вермя поста",
+                 "commentary": "Комментарий пользователя",
+                "title": "Название задачи 2",
+                "level": "Уровень сложности задачи",
+                 "code": "текст решения",
+                 "timeResult": "время выполнения попытки",
+                "volumeResult": "объём попытки"
+                },
+              ...
+              ]
+}
+```
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- |  
+| username | Имя пользователя | string |
+| timeOfPost | Время публикации поста | string |
+| commentary | Комментарий пользователя к посту | string |
+| title | Название задачи | string |
+| level | Уровень сложности задачи, отображаемый в списке постов. Уровни сложности: "easy/medium/hard" | string |
+| code | Код пользователя | string |
+| timeResult | Результат попытки по времени | string |
+| volumeResult | Результат попытки по объёму занимаемой памяти | string |
+
+Коды ответа
+
+| Код | Описание |
+| ------------- | ------------- |
+| 200 | ОК |
+| 404 | Пост не существует |
+
+
+
+
+### Отправка поста в ленту
+
+## `` POST /posts ``
+
+
+Пример запроса
+`` POST "<baseurl>/v1/posts"  ``
+
+Тело запроса
+
+```bash
+{
+   
+  "attemptID": 0,
+  "postID": 0,
+  "userID": 0,
+  "timeOfPost": "время создания поcта",
+  "commentary": "комментарий к посту",
+
+}
+```
+
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | 
+| attemptID | Идентификатор комнаты | int64 |
+| postID | Идентификатор поста | int64 |
+| userID | Идентификатор пользователя | int64 |
+| timeOfPost | Время публикации поста | string |
+| commentary | Комментарий пользователя к посту | string |
+
+
+Ответ
+
+```bash
+{
+  "attemptID": 0,
+  "postID": 0,
+  "userID": 0,
+  "timeOfPost": "время создания поcта",
+  "commentary": "комментарий к посту",
+}
+```
+
+| Параметр | Описание | Тип данных |
+| ------------- | ------------- |  ------------- | 
+| attemptID | Идентификатор комнаты | int64 |
+| postID | Идентификатор поста | int64 |
+| userID | Идентификатор пользователя | int64 |
+| timeOfPost | Время публикации поста | string |
+| commentary | Комментарий пользователя к посту | string |
+
+
+Коды ответа
+
+| Код | Описание |
+| ------------- | ------------- |
+| 201 | Пост отправлен |
+| 400 | Некорректные данные |
+| 401 | Необходима авторизация |
+
+
+
+
+
+
+
 ### Список чатов
 
 ## `` GET /rooms ``
@@ -1120,7 +1249,7 @@ paths:
       summary: Общая лента
       tags:
         - Feed
-      description: Возвращает список сообщений в общей ленте.
+      description: Возвращает список постов в общей ленте.
       parameters:
         - name: limit
           in: query
@@ -1130,13 +1259,13 @@ paths:
             minimum: 1
         - name: sort
           in: query
-          description: Порядок сортировки сообщений (возрастание или убывание). По умолчанию - убывание.
+          description: Порядок сортировки постов (возрастание или убывание). По умолчанию - убывание.
           schema:
             type: string
             enum: [asc, desc]
         - name: title
           in: query
-          description: Отображение сообщения с определенным заголовком.
+          description: Отображение постов с определенным заголовком.
           schema:
             type: string
       responses:
@@ -1194,7 +1323,9 @@ paths:
                 $ref: '#/components/schemas/NewPost'
         '400':
           description: Некорректные данные
-        
+        '401':
+          description: Необходима авторизация
+          
   /users/{id}:
     get:
       summary: Профиль пользователя
@@ -1270,7 +1401,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserSettings'
-        '401':
+        '400':
           description: Введены некорректные данные
       
   /rooms:
@@ -1766,6 +1897,13 @@ components:
         level:
           type: string
           description: Уровень сложности задачи
+        code:
+          type: string
+        timeResult:
+          type: string
+        volumeResult:
+          type: string
+        
           
     FeedPosts:
       type: object
@@ -1796,25 +1934,20 @@ components:
         postID:
           type: integer
           format: int64
-          description: ID сообщения
-        username:
-          type: string
-          description: Имя пользователя
+          description: ID поста
+        userID:
+          type: integer
+          format: int64
+        attemptID:
+          type: integer
+          format: int64
         timeOfPost:
           type: string
           description: Время публикации
         commentary:
           type: string
           description: Комментарий пользователя к сообщению
-        title:
-          type: string
-          description: Заголовок задачи
-        level:
-          type: string
-          description: Уровень сложности задачи
-        code:
-          type: string
-          description: Текст попытки решения
+       
     
     Chat:
       type: object
