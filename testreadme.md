@@ -4,12 +4,13 @@
 [1. О проекте](#description)  
 [2. Документация](#docs)  
 [3. Стек технологий](#techstack)  
+[4. Команда](#team) 
 
 
 <a name="description"/>
 
 ## О проекте
-<в разработке>
+:beer: Beercode - возможность подтянуть знания по алгоритмам, подготовиться к техническому собеседованию  или обсудить интересные задачи с другом за стаканом любого напитка. 
 
 
 <a name="docs"/>
@@ -64,3 +65,20 @@ ER диаграмма в нотации Мартина и диаграмма б�
 
 ![Elasticsearch](https://img.shields.io/badge/Elasticsearch-white?style=for-the-badge&logo=elasticsearch&logoColor=yellow)
 ![Docker](https://img.shields.io/badge/Docker-darkblue?style=for-the-badge&logo=docker&logoColor=white)
+![Docker](https://img.shields.io/badge/NGINX-white?style=for-the-badge&logo=nginx&logoColor=green)
+
+<a name="team"/>
+
+## Команда
+
+[Вашкулатов Никита](https://github.com/R3nnyWeb) (Fullstack, DevOps) 
+
+[Стружанов Фёдор](https://github.com/fredisooon) (Fullstack) 
+
+[Яньков Ярослав](https://github.com/honeyfuc) (Backend) 
+
+[Шаповалов Егор](https://github.com/CHIKOTILA) (Backend) 
+
+[Харитонов Егор](https://github.com/Egorchyk) (Backend) 
+
+[Денисова Мария](https://github.com/DenisovaM) (SA, Техпис, UI/UX)
